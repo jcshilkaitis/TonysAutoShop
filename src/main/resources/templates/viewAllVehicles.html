@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All vehicles</title>
+</head>
+<body>
+	<form>
+		<table>
+			<tr th:each="currentVehicle : ${vehicle}">
+				<td th:text="${currentVehicle.id}" />
+				<td th:text="${currentVehicle.make}" />
+				<td th:text="${currentVehicle.model}" />
+				<td th:text="${currentVehicle.year}" />
+			</tr>
+		</table>
+	</form>
+	<a href="addVehicle">Add a new vehicle</a>
+</body>
+</html>
