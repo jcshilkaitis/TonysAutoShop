@@ -1,5 +1,5 @@
 package dmacc;
-
+/*
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -15,13 +15,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import dmacc.beans.Vehicle;
 import dmacc.controller.VehicleController;
 import dmacc.repository.VehicleRepository;
-
+*/
 /**
  * @author Joe Shilkaitis - jshilkaitis
  * CIS175 - Fall 2022
  * Nov 14, 2022
  */
-@SpringBootTest
+//@SpringBootTest
 
 public class VehicleRepositoryTest {
 //	
