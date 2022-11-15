@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Vehicle {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String make;
 	private String model;
 	private int year;
@@ -30,7 +30,7 @@ public class Vehicle {
 		this.year = year;
 	}
 
-	public Vehicle(int id, String make, String model, int year) {
+	public Vehicle(long id, String make, String model, int year) {
 		super();
 		this.id = id;
 		this.make = make;

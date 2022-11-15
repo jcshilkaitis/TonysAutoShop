@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Vehicle;
@@ -36,6 +37,26 @@ public class VehicleController {
 	@PostMapping("/addVehicle")
 	public String addVehicle(@ModelAttribute Vehicle v, Model model) {
 		repo.save(v);
+		return viewAllVehicles(model);
+	}
+	
+	@GetMapping("/editVehicle/{id}")
+	public String editVehicle(@PathVariable("id") long id, Model model) {
+		Vehicle v = repo.findById(id).orElse(null);
+		model.addAttribute("newVehicle", v);
+		return "editVehicle";
+	}
+
+	@PostMapping("/updateVehicle/{id}")
+	public String updateVehicle(Vehicle v, Model model) {
+		repo.save(v);
+		return viewAllVehicles(model);
+	}
+
+	@GetMapping("/deleteVehicle/{id}")
+	public String deleteVehicle(@PathVariable("id") long id, Model model) {
+		Vehicle v = repo.findById(id).orElse(null);
+		repo.delete(v);
 		return viewAllVehicles(model);
 	}
 }
