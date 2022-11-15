@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Customer Information</title>
+</head>
+<body>
+	<form th:object="${newCustomer}" th:action="@{/updateCustomer/{id}(id=${newCustomer.id})}" method='POST'>
+		First Name: <input name="firstName" th:field=*{firstName}> <br />
+		Last Name: <input name="lastName" th:field=*{lastName}><br />
+		Email: <input name="email" th:field=*{email}><br />
+		<input name="submit" type="submit" value="submit" />
+	</form>
+<a href="viewAllCustomers">View all Customers</a>
+</body>
+</html>
