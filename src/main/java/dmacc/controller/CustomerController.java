@@ -20,7 +20,13 @@ public class CustomerController {
 	public String viewAllCustomers(Model model) {
 		model.addAttribute("customer", repo.findAll());
 		return "viewAllCustomers";
-		}
+	}
+	
+	@GetMapping("/viewCustomerInformation")
+	public String viewCustomerInformation(Model model) {
+		model.addAttribute("customer", repo.get);
+		return "viewCustomerInformation";
+	}
 	
 	@GetMapping("/addCustomer")
 	public String addCustomer(Model model) {
