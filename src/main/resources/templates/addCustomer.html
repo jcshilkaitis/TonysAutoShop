@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add a new Customer</title>
+<script>
+</script>
+</head>
+<body>
+	<form th:object="${newCustomer}" th:action="@{/addCustomer}" method="post" name="addCustomerForm">
+		First Name: <input name="firstName" type="text"><br />
+		Last Name: <input name="lastName" type="text"><br />
+		Email: <input name="email" type="text"><br />
+		<input name="submit" type="submit" value="submit"><br />
+	</form>
+	<a href="viewAllCustomers">View all Customers</a>
+</body>
+</html>
