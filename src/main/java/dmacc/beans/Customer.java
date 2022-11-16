@@ -1,8 +1,12 @@
 package dmacc.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +26,9 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String email;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private List<Appointments> appointments;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private List<Vehicle> vehicles;
 	
 }

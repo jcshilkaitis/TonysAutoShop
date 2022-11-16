@@ -2,10 +2,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Tonys Auto Shop</title>
 </head>
 <body>
-	<a href="addVehicle">Add a new vehicle</a> <br />
-	<a href="viewAllVehicles">View all vehicles</a><br />
+	<a href="addCustomer">Add a new Customer</a> <br />
+	<a href="viewAllCustomers">View all Customers</a><br />
+	<form action="/action_page.php">
+		<label for="customer">Choose a Customer to View Information:</label>
+			<select id="customer" name="customer">
+			    <option th:each="customer : ${customer}" th:text="${customer.lastName}" />
+		    </select>
+        <input type="submit">
+	</form>
 </body>
 </html>
