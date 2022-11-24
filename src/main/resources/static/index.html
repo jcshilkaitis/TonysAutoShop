@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Tonys Auto Shop</title>
@@ -7,12 +7,8 @@
 <body>
 	<a href="addCustomer">Add a new Customer</a> <br />
 	<a href="viewAllCustomers">View all Customers</a><br />
-	<form action="/action_page.php">
-		<label for="customer">Choose a Customer to View Information:</label>
-			<select id="customer" name="customer">
-			    <option th:each="customer : ${customer}" th:text="${customer.lastName}" />
-		    </select>
-        <input type="submit">
-	</form>
+	<select id ="customerList" name ="customers">
+		<option th:each="currentCustomer : ${customerList}" th:text="${currentCustomer.lastName}" th:value="${currentCustomer.id}"/>
+	</select>
 </body>
 </html>

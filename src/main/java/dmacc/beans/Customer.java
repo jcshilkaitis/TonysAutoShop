@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +28,9 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String email;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
 	private List<Appointments> appointments;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
 	private List<Vehicle> vehicles;
 	
 }
