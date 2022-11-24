@@ -1,8 +1,13 @@
 package dmacc.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +27,9 @@ public class Vehicle {
 	private String make;
 	private String model;
 	private int year;
-
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private Customer customer;
+	
 	public Vehicle(String make, String model, int year) {
 		super();
 		this.make = make;
