@@ -1,8 +1,5 @@
 package dmacc.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +21,12 @@ public class CustomerController {
 		model.addAttribute("customer", repo.findAll());
 		return "viewAllCustomers";
 	}
-
-	@GetMapping(path = "/customer")
-	public String viewCustomers (Model model){
-		
-		List<Customer> customerList = new ArrayList<>();
-		customerList = repo.findAll();
-		model.addAttribute("customerList", customerList);
-		return "index";
+	
+	@GetMapping("/viewCustomerInformation/{id}")
+	public String viewCustomerInformation(@PathVariable("id") long id, Model model) {
+		Customer c = repo.findById(id).orElse(null);
+		model.addAttribute("customer", c);
+		return "viewCustomerInformation";
 	}
 	
 	@GetMapping("/addCustomer")

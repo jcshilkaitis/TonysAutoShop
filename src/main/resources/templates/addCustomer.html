@@ -2,16 +2,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Add a new Customer</title>
-<script>
-</script>
 </head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <body>
-	<form th:object="${newCustomer}" th:action="@{/addCustomer}" method="post" name="addCustomerForm">
-		First Name: <input name="firstName" type="text"><br />
-		Last Name: <input name="lastName" type="text"><br />
-		Email: <input name="email" type="text"><br />
-		<input name="submit" type="submit" value="submit"><br />
-	</form>
-	<a href="viewAllCustomers">View all Customers</a>
+	<div class="container my-2" align="center">
+		<h1>Add a new Customer</h1>
+		<form th:object="${newCustomer}" th:action="@{/addCustomer}"
+			method="post" name="addCustomerForm">
+			<div class="form-group">
+				<label for="firstName">First Name:</label> 
+				<input name="firstName" type="text"><br />
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name:</label> 
+				<input name="lastName" type="text"><br />
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> 
+				<input name="email" type="text"><br />
+			</div>
+			<input name="submit" type="submit" value="Submit"><br />
+		</form>
+		<a href="viewAllCustomers">View all Customers</a>
+	</div>
 </body>
 </html>

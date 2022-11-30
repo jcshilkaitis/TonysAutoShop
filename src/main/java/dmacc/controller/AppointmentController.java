@@ -1,5 +1,6 @@
 package dmacc.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,29 +11,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Appointments;
 import dmacc.repository.AppointmentRepository;
+import dmacc.repository.CustomerRepository;
 
 @Controller
 public class AppointmentController {
 	@Autowired
 	AppointmentRepository repo;
+	@Autowired
+	CustomerRepository cusRepo;
 	
 	@GetMapping("/viewAllAppointments")
 	public String viewAllAppointments(Model model) {
-		model.addAttribute("Appointment", repo.findAll());
+		model.addAttribute("appointment", repo.findAll());
 		return "viewAllAppointments";
 		}
 	
 	@GetMapping("/addAppointment")
 	public String addAppointment(Model model) {
 		Appointments a = new Appointments();
+		repo.save(a);
 		model.addAttribute("addAppointment", a);
 		return "addAppointment";
 	}
 	
-	@PostMapping("/addAppointment")
-	public String addAppointment(@ModelAttribute Appointments a, Model model) {
+	@PostMapping("/addAppointment/{id}")
+	public String addAppointment(@PathVariable("id") long id, @ModelAttribute Appointments a, Model model) {
+		a.setCustomer(cusRepo.findById(id).orElse(null));
 		repo.save(a);
-		return viewAllAppointments(model);
+		return "viewAllCustomers";
 	}
 	
 	@GetMapping("/editAppointment/{id}")

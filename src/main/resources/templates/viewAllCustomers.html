@@ -3,20 +3,45 @@
 <meta charset="UTF-8">
 <title>All Customers</title>
 </head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <body>
-	<form>
-		<table>
-			<tr th:each="currentCustomer : ${customer}">
-				<td th:text="${currentCustomer.id}" />
-				<td th:text="${currentCustomer.firstName}" />
-				<td th:text="${currentCustomer.lastName}" />
-				<td th:text="${currentCustomer.email}" />
-				<td><a th:href="@{/editCustomer/{id}(id=${currentCustomer.id})}">Edit</a></td>
- 				<td><a th:href="@{/deleteCustomer/{id}(id=${currentCustomer.id})}">Delete</a></td>
-			</tr>
+	<div class="container my-2" align="center">
+		<h3>Customer List</h3>
+		<table style="width: 80%" border="1"
+			class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Edit</th>
+					<th>Delete</th>
+					<th>View Customer Information</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="currentCustomer : ${customer}">
+					<td th:text="${currentCustomer.id}" />
+					<td th:text="${currentCustomer.firstName}" />
+					<td th:text="${currentCustomer.lastName}" />
+					<td th:text="${currentCustomer.email}" />
+					<td><a
+						th:href="@{/editCustomer/{id}(id=${currentCustomer.id})}"
+						class="btn btn-primary">Edit</a></td>
+					<td><a
+						th:href="@{/deleteCustomer/{id}(id=${currentCustomer.id})}"
+						class="btn btn-primary">Delete</a></td>
+					<td><a
+						th:href="@{/viewCustomerInformation/{id}(id=${currentCustomer.id})}"
+						class="btn btn-primary">View Customer Information</a></td>
+				</tr>
 		</table>
-	</form>
-	<a href="/">index</a><br />
-	<a href="../addCustomer">Add a new Customer</a>
+		<a href="/">Index</a><br /> <a href="../addCustomer">Add a New
+			Customer</a>
+	</div>
+
 </body>
 </html>
