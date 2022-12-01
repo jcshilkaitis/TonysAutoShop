@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import dmacc.beans.Customer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 /**
@@ -25,7 +25,9 @@ public class Appointments {
 	@Id
 	@GeneratedValue
 	private long id;
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne
+	@JoinColumn(name="customer_id", nullable = false)
 	private Customer customer;
+	@Temporal(TemporalType.DATE)
 	private Date appointment;
 }
