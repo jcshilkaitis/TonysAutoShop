@@ -34,7 +34,18 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col">Vehicles</div>
+			  <div class="col">
+				<table>
+					<tr th:each="vehicle : ${customer.vehicles}">
+						<td th:text="${vehicle.id}" />
+						<td th:text="${vehicle.make}" />
+						<td th:text="${vehicle.model}" />
+						<td th:text="${vehicle.year}" />
+					</tr>
+				</table>
+				<a th:href="@{/addVehicle/{custId}(custId=${customer.id})}">Add
+					Vehicle</a>
+			</div>
 			<div class="col">
 				<table>
 					<tr>
