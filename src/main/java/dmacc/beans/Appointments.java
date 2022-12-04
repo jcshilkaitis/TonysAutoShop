@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 /**
@@ -25,9 +27,9 @@ public class Appointments {
 	@Id
 	@GeneratedValue
 	private long id;
-	@ManyToOne
-	@JoinColumn(name="customer_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Customer customer;
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date appointment;
+	private String reason;
 }

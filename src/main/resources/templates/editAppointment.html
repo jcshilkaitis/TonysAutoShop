@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create Appointment</title>
+</head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<body>
+	<div class="container my-2" align="center">
+		<form th:object="${newAppointment}" th:action="@{/updateAppointment/{id}(id=${newAppointment.id})}"
+			method="post" name="addAppointmentForm">
+			Appointment Date: <input class="form-control" type="date" th:field="*{appointment}"><br />
+			Reason for appointment: <input class="form-control" type="text" th:field="*{reason}"><br />
+			<input name="submit" type="submit" value="submit"><br />
+		</form>
+	</div>
+
+</body>
+</html>
