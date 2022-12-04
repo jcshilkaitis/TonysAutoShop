@@ -7,24 +7,34 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <body>
 	<div class="container my-2" align="center">
-		<h1>Add a new Customer</h1>
+		<h1>Add a New Customer</h1>
 		<form th:object="${newCustomer}" th:action="@{/addCustomer}"
 			method="post" name="addCustomerForm">
 			<div class="form-group">
-				<label for="firstName">First Name:</label> 
-				<input name="firstName" type="text"><br />
+				<label for="firstName">First Name:</label> <input name="firstName"
+					type="text"><br />
 			</div>
 			<div class="form-group">
-				<label for="lastName">Last Name:</label> 
-				<input name="lastName" type="text"><br />
+				<label for="lastName">Last Name:</label> <input name="lastName"
+					type="text"><br />
 			</div>
 			<div class="form-group">
-				<label for="email">Email:</label> 
-				<input name="email" type="text"><br />
+				<label for="email">Email:</label> <input name="email" type="text"><br />
 			</div>
 			<input name="submit" type="submit" value="Submit"><br />
 		</form>
-		<a href="viewAllCustomers">View all Customers</a>
 	</div>
 </body>
+<div class="footer-basic" align="center">
+	<footer>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a href="addCustomer">Add
+					Customer</a></li>
+			<li class="list-inline-item"><a href="viewAllCustomers">View
+					All Customers</a></li>
+			<li class="list-inline-item"><a href="/">Home</a></li>
+		</ul>
+		<p class="copyright">Tony's Auto Shop © 2022</p>
+	</footer>
+</div>
 </html>

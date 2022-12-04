@@ -13,5 +13,6 @@
 		<input name="submit" type="submit" value="submit"><br />
 	</form>
 	<a href="viewAllVehicles">View all vehicles</a>
+	<a th:href="@{/viewCustomerInformation/{custId}(custId=${customer.id})}">Back to Customer Information</a>
 </body>
 </html>
