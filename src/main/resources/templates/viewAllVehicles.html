@@ -11,6 +11,7 @@
 				<td th:text="${currentVehicle.make}" />
 				<td th:text="${currentVehicle.model}" />
 				<td th:text="${currentVehicle.year}" />
+				<td th:text="${currentVehicle.customer}" />
 				<td><a th:href="@{/editVehicle/{id}(id=${currentVehicle.id})}">Edit</a></td>
  				<td><a th:href="@{/deleteVehicle/{id}(id=${currentVehicle.id})}">Delete</a></td>
 			</tr>

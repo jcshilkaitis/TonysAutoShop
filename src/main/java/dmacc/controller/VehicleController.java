@@ -2,6 +2,7 @@ package dmacc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,12 @@ public class VehicleController {
 		return "viewAllVehicles";
 		}
 	
+	public String viewCustomerInformation(@PathVariable("id") long id, Model model) {
+		Customer c = customerRepo.findById(id).orElse(null);
+		model.addAttribute("customer", c);
+		return "viewCustomerInformation";
+	}
+	
 	@GetMapping("/addVehicle/{custId}")
 	public String addVehicle(@PathVariable("custId") long custId,Model model) {
 		Customer c = customerRepo.findById(custId).orElse(null);
@@ -56,23 +63,29 @@ public class VehicleController {
 		c.setVehicles(vehicle);
 		customerRepo.save(c);
 		
-		return "viewAllCustomers";
+		long tempId = v.getCustomer().getId();
+		return viewCustomerInformation(tempId,model);
 
 	}
 	
 	@GetMapping("/editVehicle/{id}")
 	public String editVehicle(@PathVariable("id") long id, Model model) {
 		Vehicle v = vehicleRepo.findById(id).orElse(null);
+		Customer c = v.getCustomer();
+		model.addAttribute("customer", c);
 		model.addAttribute("newVehicle", v);
 		return "editVehicle";
 	}
 
-	@PostMapping("/updateVehicle/{id}")
-	public String updateVehicle(Vehicle v, Model model) {
+	@PostMapping("/updateVehicle/{id}/{custId}")
+	public String updateVehicle(@PathVariable("id") long id, @PathVariable("custId") long custId, Vehicle v, Customer c, Model model) {
+		c = customerRepo.findById(custId).orElse(null);
+		v.setCustomer(c);
 		vehicleRepo.save(v);
-		return viewAllVehicles(model);
+		customerRepo.save(c);
+		return viewCustomerInformation(c.getId(),model);
 	}
-
+	
 	@GetMapping("/deleteVehicle/{id}")
 	public String deleteVehicle(@PathVariable("id") long id, Model model) {
 		Vehicle v = vehicleRepo.findById(id).orElse(null);

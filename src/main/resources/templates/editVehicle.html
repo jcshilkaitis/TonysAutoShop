@@ -4,7 +4,7 @@
 <title>Edit Vehicle Information</title>
 </head>
 <body>
-	<form th:object="${newVehicle}" th:action="@{/updateVehicle/{id}(id=${newVehicle.id})}" method='POST'>
+	<form th:object="${newVehicle}" th:action="@{/updateVehicle/{id}/{custId}(id=${newVehicle.id}, custId=${newVehicle.customer.id})}" method='POST'>
 		Make: <input name="make" th:field=*{make}> <br />
 		Model: <input name="model" th:field=*{model}><br />
 		Year: <input name="year" th:field=*{year}><br />
@@ -13,3 +13,7 @@
 <a href="viewAllVehicles">View all Vehicles</a>
 </body>
 </html>
+<!-- Make: <input name="make" th:field=*{make}> <br />
+		Model: <input name="model" th:field=*{model}><br />
+		Year: <input name="year" th:field=*{year}><br />
+		<input name="submit" type="submit" value="submit" /> -->
