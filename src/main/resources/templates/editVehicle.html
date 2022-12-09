@@ -3,15 +3,35 @@
 <meta charset="UTF-8">
 <title>Edit Vehicle Information</title>
 </head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <body>
-	<form th:object="${newVehicle}" th:action="@{/updateVehicle/{id}/{custId}(id=${newVehicle.id}, custId=${newVehicle.customer.id})}" method='POST'>
-		Make: <input name="make" th:field=*{make}> <br />
-		Model: <input name="model" th:field=*{model}><br />
-		Year: <input name="year" th:field=*{year}><br />
-		<input name="submit" type="submit" value="submit" />
-	</form>
-<a href="viewAllVehicles">View all Vehicles</a>
+	<div class="container my-2" align="center">
+		<form th:object="${newVehicle}"
+			th:action="@{/updateVehicle/{id}/{custId}(id=${newVehicle.id}, custId=${newVehicle.customer.id})}"
+			method='POST'>
+			Make: <input name="make" th:field=*{make}> <br /> Model: <input
+				name="model" th:field=*{model}><br /> Year: <input
+				name="year" th:field=*{year}><br /> <input name="submit"
+				type="submit" value="submit" />
+		</form>
+				<a
+			th:href="@{/viewCustomerInformation/{custId}(custId=${customer.id})}">Back
+			to Customer Information</a>
+	</div>
 </body>
+<div class="footer-basic" align="center">
+	<footer>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a href="/addCustomer">Add
+					Customer</a></li>
+			<li class="list-inline-item"><a href="/viewAllCustomers">View
+					All Customers</a></li>
+			<li class="list-inline-item"><a href="/">Home</a></li>
+		</ul>
+		<p class="copyright">Tony's Auto Shop © 2022</p>
+	</footer>
+</div>
 </html>
 <!-- Make: <input name="make" th:field=*{make}> <br />
 		Model: <input name="model" th:field=*{model}><br />

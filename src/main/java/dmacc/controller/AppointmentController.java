@@ -55,14 +55,19 @@ public class AppointmentController {
 	@GetMapping("/editAppointment/{id}")
 	public String editAppointment(@PathVariable("id") long id, Model model) {
 		Appointments a = repo.findById(id).orElse(null);
+		Customer c = a.getCustomer();
+		model.addAttribute("customer", c);
 		model.addAttribute("newAppointment", a);
 		return "editAppointment";
 	}
 
-	@PostMapping("/updateAppointment/{id}")
-	public String updateAppointment(Appointments a, Model model) {
+	@PostMapping("/updateAppointment/{id}/{custId}")
+	public String updateAppointment(@PathVariable("id") long id, @PathVariable("custId") long custId, Customer c, Appointments a, Model model) {
+		c = cusRepo.findById(custId).orElse(null);
+		a.setCustomer(c);
+		cusRepo.save(c);
 		repo.save(a);
-		return "viewAllCustomers";
+		return viewCustomerInformation(c.getId(),model);
 	}
 
 	@GetMapping("/deleteAppointment/{id}")

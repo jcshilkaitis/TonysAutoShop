@@ -89,7 +89,8 @@ public class VehicleController {
 	@GetMapping("/deleteVehicle/{id}")
 	public String deleteVehicle(@PathVariable("id") long id, Model model) {
 		Vehicle v = vehicleRepo.findById(id).orElse(null);
+		Customer c = v.getCustomer();
 		vehicleRepo.delete(v);
-		return viewAllVehicles(model);
+		return viewCustomerInformation(c.getId(),model);
 	}
 }
