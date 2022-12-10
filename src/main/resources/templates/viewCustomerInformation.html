@@ -72,7 +72,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Date</th>
-							<th>Reason for appoinment</th>
+							<th>Reason for appointment</th>
 							<th>Edit</th>
 							<th>Delete</th>
 
@@ -83,7 +83,7 @@
 						<td th:text="${{appointment.appointment}}" />
 						<td th:text="${{appointment.reason}}" />
 						<td><a
-							th:href="@{/editAppointment/{id}(id=${appointment.id})}"
+							th:href="@{/editAppointment/{id}/(id=${appointment.id})}"
 							class="btn btn-primary">Edit</a></td>
 						<td><a
 							th:href="@{/deleteAppointment/{id}(id=${appointment.id})}"
@@ -101,9 +101,9 @@
 <div class="footer-basic" align="center">
 	<footer>
 		<ul class="list-inline">
-			<li class="list-inline-item"><a href="addCustomer">Add
+			<li class="list-inline-item"><a href="/addCustomer">Add
 					Customer</a></li>
-			<li class="list-inline-item"><a href="viewAllCustomers">View
+			<li class="list-inline-item"><a href="/viewAllCustomers">View
 					All Customers</a></li>
 			<li class="list-inline-item"><a href="/">Home</a></li>
 		</ul>
