@@ -3,13 +3,32 @@
 <meta charset="UTF-8">
 <title>Add a new vehicle</title>
 <script>
+	function checkForm(form) {
+		var makePattern = /^[a-zA-z]+$/;
+		var modelPattern = /^[-a-zA-z0-9/'\s]+$/;
+		var yearPattern = /^[0-9]{4}$/;
+		
+		if (!makePattern.test(form.make.value)) {
+		    alert("Invalid input for vehicle make");
+		    return false;
+		  }
+		if (!modelPattern.test(form.model.value)) {
+		    alert("Invalid input for vehicle model");
+		    return false;
+		  }
+		if (!yearPattern.test(form.year.value)) {
+		    alert("Invalid input for vehicle year");
+		    return false;
+		  }
+		return true
+	}
 </script>
 </head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <body>
 	<div class="container my-2" align="center">
-	<form th:object="${newVehicle}" th:action="@{/addVehicle/{custId}(custId=${customer.id})}" method="post" name="addVehicleForm">
+	<form th:object="${newVehicle}" th:action="@{/addVehicle/{custId}(custId=${customer.id})}" method="post" name="addVehicleForm" onsubmit="return checkForm(this);">
 		Make: <input name="make" type="text"><br />
 		Model: <input name="model" type="text"><br />
 		Year: <input name="year" type="text"><br />
