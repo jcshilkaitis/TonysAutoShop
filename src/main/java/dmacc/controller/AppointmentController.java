@@ -44,9 +44,8 @@ public class AppointmentController {
 		a.setCustomer(cusRepo.findById(id).orElse(null));
 		repo.save(a);
 		c = cusRepo.findById(id).orElse(null);
-		List<Appointments> appointment = new ArrayList<Appointments>();
+		List<Appointments> appointment = c.getAppointments();
 		appointment.add(a);
-		c.setAppointments(appointment);
 		cusRepo.save(c);
 		long tempId = a.getCustomer().getId();
 		return viewCustomerInformation(tempId,model);

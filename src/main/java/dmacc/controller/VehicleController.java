@@ -55,14 +55,11 @@ public class VehicleController {
 	@PostMapping("/addVehicle/{custId}")
 	public String addVehicle(@PathVariable("custId") long custId, @ModelAttribute Vehicle v, Customer c, Model model) {
 		v.setCustomer(customerRepo.findById(custId).orElse(null));
-		vehicleRepo.save(v);
-		
+		vehicleRepo.save(v);	
 		c = customerRepo.findById(custId).orElse(null);
-		List<Vehicle> vehicle = new ArrayList<Vehicle>();
+		List<Vehicle> vehicle = c.getVehicles();
 		vehicle.add(v);
-		c.setVehicles(vehicle);
 		customerRepo.save(c);
-		
 		long tempId = v.getCustomer().getId();
 		return viewCustomerInformation(tempId,model);
 
