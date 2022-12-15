@@ -2,17 +2,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Create Appointment</title>
-</head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script type = "text/javascript">
+
+	function validate() {
+		if(document.getElementById("date").value ==""){
+			alert("Please input a date");
+			document.addAppointmentForm.date.focus();
+			return false;
+		}
+		if(document.getElementById("reason").value ==""){
+			alert("Please input a reason");
+			document.addAppointmentForm.reason.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+
+
 <body>
 	<div class="container my-2" align="center">
-		<form th:object="${newAppointment}"
+		<form name="addAppointmentForm"  th:object="${newAppointment}"
 			th:action="@{/addAppointment/{custId}(custId=${customer.id})}"
-			method="post" name="addAppointmentForm">
-			Appointment Date: <input class="form-control" type="date"
-				th:field="*{appointment}"><br /> Reason for appointment: <input
-				class="form-control" type="text" th:field="*{reason}"><br />
+			method="POST"  onsubmit = "return validate();">
+			Appointment Date: <input id = "date" name="date" class="form-control" type="date"
+				th:field="*{appointment}"><br /> Reason for appointment: <input id = "reason"
+				name="reason" class="form-control" type="text" th:field="*{reason}"><br />
 			<input name="submit" type="submit" value="submit"><br />
 		</form>
 		<a
